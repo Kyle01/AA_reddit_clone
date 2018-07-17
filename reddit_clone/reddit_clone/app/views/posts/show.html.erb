@@ -1,6 +1,7 @@
 <h2><%=Sub.find(params[:sub_id]).title%> Post</h2>
 
 <h4>Title: <%=@post.title%> </h4>
+<h4>Author: <%=User.find(@post.author_id).username%> </h4>
 
 <% unless @post.url.empty? %>
   <h4>Link:<a href="<%=@post.url%>"><%=@post.url%></a></h4>
@@ -10,4 +11,27 @@
   <h4>Content: <%=@post.content%> </h4>
 <% end %>  
 
+<h4>Comments</h4>
+<ul>
+<% if @post.comments.empty?%>
+  <li> No comments yet</li>
+<% else %>
+  <% @post.comments.each do |comment| %>
+    <li>
+    Time: <%=comment.created_at%>,
+    Author: <%=User.find(comment.author_id).username%>
+    Comment: <%=comment.content%>
+    </li>
+  <% end %>
+<% end %>
+</ul>
+<h4>Leave Comment</h4>
+<form action="<%=sub_post_comments_url(sub_id: @post.sub_id, post_id: @post.id)%>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+  Comment
+  <input type="text" name="comment[content]" value="">
+  <input type="submit" name="" value="Post comment">
+</form>
+
+<br>
 <a href="<%=sub_url(params[:sub_id])%>">Back to sub</a>

@@ -8,4 +8,8 @@ class Post < ApplicationRecord
   belongs_to :sub,
   foreign_key: :sub_id,
   class_name: :Sub
+  
+  has_many :comments,
+  foreign_key: :post_id,
+  class_name: :Comment
 end

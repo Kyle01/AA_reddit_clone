@@ -13,7 +13,7 @@
 <ul>
 <%@sub.posts.each do |post|%>
   <li>
-  Title: <%=post.title%> <a href="<%=sub_post_url(post)%>">Link</a>
+  Title: <%=post.title%> <a href="<%=sub_post_url(sub_id: post.sub_id, id: post.id)%>">Link</a>
 </li> 
 <%end%>
 </ul>

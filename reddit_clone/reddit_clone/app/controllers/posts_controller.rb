@@ -35,6 +35,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
+    redirect_to sub_post_url(sub_id: @post.sub_id, id: @post.id)
   end
   
   def posts_params

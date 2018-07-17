@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :subs do 
     post '/subscribe', to: 'subs#subscribe'
-    resources :posts
+    resources :posts do
+      resources :comments, only: [:new, :create, :show, :destroy]
+    end
   end
 end
