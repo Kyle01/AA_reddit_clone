@@ -1,0 +1,19 @@
+<h2>Make a new Sub</h2>
+<h3>Subs are places where people can talk about a certain topic</h3>
+<h4>You will become the moderator of the sub once it is made</h4>
+
+<form action="<%=subs_url%>" method="post">
+  <input type="hidden" name="authenticity_token" value="form_authenticity_token">
+  
+  <label>Title
+  <input type="text" name="sub[title]" value="">
+  </label>
+  
+  <label>Description
+  <input type="text" name="sub[description]" value="">
+  </label>
+  
+  <input type="submit" name="" value="Make new sub">
+</form>
+  
+  

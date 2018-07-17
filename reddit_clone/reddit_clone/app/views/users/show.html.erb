@@ -1,0 +1,10 @@
+<h3>Below are your subs</h3>
+<ul>
+<% @user.subs.each do |subb| %>
+  
+  Sub Name: <%=subb.title%>, 
+  Sub description: <%=subb.description%> 
+  Moderator: <%=User.find(subb.moderator_id).username%>
+  <a href="#">Link</a>
+  <% end %>
+</ul>
