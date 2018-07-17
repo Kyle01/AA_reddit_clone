@@ -1,10 +1,23 @@
 <h3>Below are your subs</h3>
 <ul>
-<% @user.subs.each do |subb| %>
-  
-  Sub Name: <%=subb.title%>, 
-  Sub description: <%=subb.description%> 
+<% @user.subs.each do |subb| %>  
+  Name: <%=subb.title%>, 
+  Description: <%=subb.description%> 
   Moderator: <%=User.find(subb.moderator_id).username%>
-  <a href="#">Link</a>
+  <a href="<%=sub_url(subb)%>">Link</a>
+  <br>
+  <% end %>
+  
+<% @user.subscriptions.each do |subb| %>  
+  Name: <%=subb.title%>, 
+  Description: <%=subb.description%> 
+  Moderator: <%=User.find(subb.moderator_id).username%>
+  <a href="<%=sub_url(subb)%>">Link</a>
+  <br>
   <% end %>
 </ul>
+
+<h4>Click below to see all subs</h4>
+<a href="<%=subs_url%>">See all subs</a>
+<h4>Click below to make a sub </h4>
+<a href="<%=new_sub_url%>">Make new Sub</a>

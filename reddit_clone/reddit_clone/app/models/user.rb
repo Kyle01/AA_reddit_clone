@@ -15,6 +15,14 @@ class User < ApplicationRecord
   foreign_key: :author_id,
   class_name: :Post
   
+  has_many :subs_user,
+  foreign_key: :user_id,
+  class_name: :SubsUser
+  
+  has_many :subscriptions,
+  through: :subs_user,
+  source: :sub
+  
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)

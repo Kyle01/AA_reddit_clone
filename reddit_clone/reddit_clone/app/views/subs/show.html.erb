@@ -1,0 +1,31 @@
+<h2>Welcome to the <%=@sub.title%> Sub!</h2>
+<h3>Description: <%=@sub.description%></h3>
+<% unless current_user.subscriptions.include?(@sub) || current_user.subs.include?(@sub) %>
+  <form action="<%=sub_subscribe_url(@sub)%>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+    <input type="submit" name="" value="Subscribe to sub!">
+  </form>
+<% end %>
+
+<h4>Click here to make new post! <a href="<%=new_sub_post_url(@sub)%>">New Post</a></h4>
+
+<h4>Posts</h4>
+<ul>
+<%@sub.posts.each do |post|%>
+  <li>
+  Title: <%=post.title%> <a href="<%=sub_post_url(post)%>">Link</a>
+</li> 
+<%end%>
+</ul>
+
+<h4>Moderator</h4>
+<%=User.find(@sub.moderator_id).username%>
+
+<h4>Members</h4>
+<% @sub.subscribers.each do |member| %>
+  <%=member.username%>
+<% end %>
+
+<br>
+<br>
+<a href="<%=user_url(current_user)%>">Return to your home page</a>

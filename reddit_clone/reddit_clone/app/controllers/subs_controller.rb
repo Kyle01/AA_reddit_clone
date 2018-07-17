@@ -1,8 +1,8 @@
 class SubsController < ApplicationController
-  before_action :require_login, only: [:update, :edit]
+  before_action :require_login, only: [:update, :edit, :subscribe]
   
   def index
-    @subs = Subs.all
+    @subs = Sub.all
   end
   
   def create
@@ -25,11 +25,11 @@ class SubsController < ApplicationController
   end
   
   def show
-    @sub = Sub.find_by(params[:id])
+    @sub = Sub.find(params[:id])
   end
   
   def update
-    @sub = Sub.find_by(params[:id])
+    @sub = Sub.find(params[:id])
     @sub.update_attributes(sub_params)
     if @sub.save
       redirect_to sub_url(@sub)
@@ -44,5 +44,15 @@ class SubsController < ApplicationController
   
   def sub_params
     params.require(:sub).permit(:title, :description)
+  end
+  
+  def subscribe
+    subuser = SubsUser.new(user_id: current_user.id, sub_id: params[:sub_id])
+    if subuser.save
+      redirect_to sub_url(params[:sub_id])
+    else
+      flash[:errors] = subuser.errors.full_messages
+      redirect_to sub_url(params[:sub_id])
+    end
   end
 end

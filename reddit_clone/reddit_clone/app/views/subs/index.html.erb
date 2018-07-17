@@ -1,0 +1,13 @@
+<h2>All Reddit Subs</h2>
+
+<% @subs.each do |subb| %>
+  Name: <%=subb.title%>, 
+  Description: <%=subb.description%> 
+  Moderator: <%=User.find(subb.moderator_id).username%>
+  <a href="<%=sub_url(subb)%>">Link</a>
+  <br>
+  <% end %>
+<%  %>
+
+<br>
+<a href="<%=user_url(current_user)%>">Return to your home page</a>

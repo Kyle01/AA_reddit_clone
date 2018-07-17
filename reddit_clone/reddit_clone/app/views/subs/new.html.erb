@@ -3,7 +3,7 @@
 <h4>You will become the moderator of the sub once it is made</h4>
 
 <form action="<%=subs_url%>" method="post">
-  <input type="hidden" name="authenticity_token" value="form_authenticity_token">
+  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
   
   <label>Title
   <input type="text" name="sub[title]" value="">

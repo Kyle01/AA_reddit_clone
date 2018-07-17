@@ -1,0 +1,13 @@
+<h2><%=Sub.find(params[:sub_id]).title%> Post</h2>
+
+<h4>Title: <%=@post.title%> </h4>
+
+<% unless @post.url.empty? %>
+  <h4>Link:<a href="<%=@post.url%>"><%=@post.url%></a></h4>
+<% end %>
+
+<% unless @post.content.empty? %>
+  <h4>Content: <%=@post.content%> </h4>
+<% end %>  
+
+<a href="<%=sub_url(params[:sub_id])%>">Back to sub</a>
